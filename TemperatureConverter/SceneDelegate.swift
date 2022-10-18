@@ -9,9 +9,11 @@ import UIKit
 
 @UIApplicationMain
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
+    // MARK: - Properties
     var window: UIWindow?
     var coordinator: RootCoordinator?
 
+    // MARK: - Methods
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let rootNavigationController = UINavigationController()
 

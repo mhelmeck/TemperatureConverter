@@ -16,6 +16,9 @@
 		CC271CD928FEDE3000B17F24 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CD828FEDE3000B17F24 /* Coordinator.swift */; };
 		CC271CDB28FEDE9400B17F24 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CDA28FEDE9400B17F24 /* RootCoordinator.swift */; };
 		CC271CDF28FEE5AA00B17F24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */; };
+		CC271CE228FEF75000B17F24 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC271CE128FEF75000B17F24 /* SnapKit */; };
+		CC271CE928FEF94500B17F24 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CE828FEF94500B17F24 /* Configurable.swift */; };
+		CC271CEB28FEFCED00B17F24 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,8 @@
 		CC271CD828FEDE3000B17F24 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CC271CDA28FEDE9400B17F24 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		CC271CE828FEF94500B17F24 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
+		CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC271CE228FEF75000B17F24 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +107,7 @@
 			children = (
 				CC271CD728FEDD7A00B17F24 /* Navigation */,
 				CC271CDD28FEDEAA00B17F24 /* Scenes */,
+				CC271CE328FEF7F200B17F24 /* Helpers */,
 				CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */,
 				CC271CB128FED56600B17F24 /* LaunchScreen.storyboard */,
 				CC271CAF28FED56600B17F24 /* Assets.xcassets */,
@@ -151,6 +158,31 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		CC271CE328FEF7F200B17F24 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CC271CE728FEF93F00B17F24 /* Protocols */,
+				CC271CE428FEF81500B17F24 /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CC271CE428FEF81500B17F24 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CC271CE728FEF93F00B17F24 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CC271CE828FEF94500B17F24 /* Configurable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,6 +200,9 @@
 			dependencies = (
 			);
 			name = TemperatureConverter;
+			packageProductDependencies = (
+				CC271CE128FEF75000B17F24 /* SnapKit */,
+			);
 			productName = TemperatureConverter;
 			productReference = CC271CA328FED56400B17F24 /* TemperatureConverter.app */;
 			productType = "com.apple.product-type.application";
@@ -240,6 +275,9 @@
 				Base,
 			);
 			mainGroup = CC271C9A28FED56400B17F24;
+			packageReferences = (
+				CC271CE028FEF74F00B17F24 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = CC271CA428FED56400B17F24 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -304,6 +342,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC271CEB28FEFCED00B17F24 /* UIView+Extensions.swift in Sources */,
+				CC271CE928FEF94500B17F24 /* Configurable.swift in Sources */,
 				CC271CDF28FEE5AA00B17F24 /* SceneDelegate.swift in Sources */,
 				CC271CDB28FEDE9400B17F24 /* RootCoordinator.swift in Sources */,
 				CC271CAB28FED56400B17F24 /* HomeViewController.swift in Sources */,
@@ -645,6 +685,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CC271CE028FEF74F00B17F24 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CC271CE128FEF75000B17F24 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC271CE028FEF74F00B17F24 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CC271C9B28FED56400B17F24 /* Project object */;
 }
