@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC271CA728FED56400B17F24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CA628FED56400B17F24 /* AppDelegate.swift */; };
-		CC271CAB28FED56400B17F24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CAA28FED56400B17F24 /* ViewController.swift */; };
-		CC271CAE28FED56400B17F24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC271CAC28FED56400B17F24 /* Main.storyboard */; };
+		CC271CAB28FED56400B17F24 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CAA28FED56400B17F24 /* HomeViewController.swift */; };
 		CC271CB028FED56600B17F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC271CAF28FED56600B17F24 /* Assets.xcassets */; };
 		CC271CB328FED56600B17F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC271CB128FED56600B17F24 /* LaunchScreen.storyboard */; };
 		CC271CBE28FED56600B17F24 /* TemperatureConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CBD28FED56600B17F24 /* TemperatureConverterTests.swift */; };
 		CC271CC828FED56600B17F24 /* TemperatureConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CC728FED56600B17F24 /* TemperatureConverterUITests.swift */; };
 		CC271CCA28FED56600B17F24 /* TemperatureConverterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CC928FED56600B17F24 /* TemperatureConverterUITestsLaunchTests.swift */; };
+		CC271CD928FEDE3000B17F24 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CD828FEDE3000B17F24 /* Coordinator.swift */; };
+		CC271CDB28FEDE9400B17F24 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CDA28FEDE9400B17F24 /* RootCoordinator.swift */; };
+		CC271CDF28FEE5AA00B17F24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +37,7 @@
 
 /* Begin PBXFileReference section */
 		CC271CA328FED56400B17F24 /* TemperatureConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TemperatureConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC271CA628FED56400B17F24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CC271CAA28FED56400B17F24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CC271CAD28FED56400B17F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CC271CAA28FED56400B17F24 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CC271CAF28FED56600B17F24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC271CB228FED56600B17F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC271CB428FED56600B17F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +46,9 @@
 		CC271CC328FED56600B17F24 /* TemperatureConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemperatureConverterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC271CC728FED56600B17F24 /* TemperatureConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureConverterUITests.swift; sourceTree = "<group>"; };
 		CC271CC928FED56600B17F24 /* TemperatureConverterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureConverterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CC271CD828FEDE3000B17F24 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		CC271CDA28FEDE9400B17F24 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +99,11 @@
 		CC271CA528FED56400B17F24 /* TemperatureConverter */ = {
 			isa = PBXGroup;
 			children = (
-				CC271CA628FED56400B17F24 /* AppDelegate.swift */,
-				CC271CAA28FED56400B17F24 /* ViewController.swift */,
-				CC271CAC28FED56400B17F24 /* Main.storyboard */,
-				CC271CAF28FED56600B17F24 /* Assets.xcassets */,
+				CC271CD728FEDD7A00B17F24 /* Navigation */,
+				CC271CDD28FEDEAA00B17F24 /* Scenes */,
+				CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */,
 				CC271CB128FED56600B17F24 /* LaunchScreen.storyboard */,
+				CC271CAF28FED56600B17F24 /* Assets.xcassets */,
 				CC271CB428FED56600B17F24 /* Info.plist */,
 			);
 			path = TemperatureConverter;
@@ -122,6 +124,31 @@
 				CC271CC928FED56600B17F24 /* TemperatureConverterUITestsLaunchTests.swift */,
 			);
 			path = TemperatureConverterUITests;
+			sourceTree = "<group>";
+		};
+		CC271CD728FEDD7A00B17F24 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				CC271CDC28FEDE9A00B17F24 /* Protocols */,
+				CC271CDA28FEDE9400B17F24 /* RootCoordinator.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		CC271CDC28FEDE9A00B17F24 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CC271CD828FEDE3000B17F24 /* Coordinator.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CC271CDD28FEDEAA00B17F24 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				CC271CAA28FED56400B17F24 /* HomeViewController.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +258,6 @@
 			files = (
 				CC271CB328FED56600B17F24 /* LaunchScreen.storyboard in Resources */,
 				CC271CB028FED56600B17F24 /* Assets.xcassets in Resources */,
-				CC271CAE28FED56400B17F24 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,8 +304,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC271CAB28FED56400B17F24 /* ViewController.swift in Sources */,
-				CC271CA728FED56400B17F24 /* AppDelegate.swift in Sources */,
+				CC271CDF28FEE5AA00B17F24 /* SceneDelegate.swift in Sources */,
+				CC271CDB28FEDE9400B17F24 /* RootCoordinator.swift in Sources */,
+				CC271CAB28FED56400B17F24 /* HomeViewController.swift in Sources */,
+				CC271CD928FEDE3000B17F24 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,14 +344,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CC271CAC28FED56400B17F24 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CC271CAD28FED56400B17F24 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CC271CB128FED56600B17F24 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -460,8 +480,8 @@
 				INFOPLIST_FILE = TemperatureConverter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TemperatureConverter;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -492,8 +512,8 @@
 				INFOPLIST_FILE = TemperatureConverter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TemperatureConverter;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
