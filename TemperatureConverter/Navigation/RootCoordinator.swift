@@ -19,7 +19,10 @@ class RootCoordinator: Coordinator {
 
     // MARK: - Methods
     func start() {
+        let homeVM = HomeViewModel()
         let homeVC = HomeViewController()
+
+        homeVC.viewModel = homeVM
 
         rootNavigationController.setViewControllers([homeVC], animated: true)
     }

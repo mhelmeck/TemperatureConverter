@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
         static let boxViewSpacing: CGFloat = 8.0
     }
 
+    // MARK: - Properties
     static let labelConfiguration: (UILabel) -> Void = {
         $0.textColor = .lightGray
         $0.font = UIFont.preferredFont(forTextStyle: .caption1)
@@ -29,6 +30,9 @@ class HomeViewController: UIViewController {
         $0.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
         $0.backgroundColor = .systemGray6
     }
+
+    var viewModel: HomeViewModel!
+    private var test: String = "0.0"
 
     // MARK: - UI elements
     let stackView = UIStackView().configure {
@@ -50,9 +54,7 @@ class HomeViewController: UIViewController {
     }
 
     let degreesBoxStackView = UIStackView().configure(HomeViewController.boxStackViewConfiguration)
-    let degreesTitleLabel = UILabel()
-        .configure(HomeViewController.labelConfiguration)
-        .configure { $0.text = "Degrees" }
+    let temperatureTitleLabel = UILabel().configure(HomeViewController.labelConfiguration)
     let degreesTextView = UITextView().configure {
         $0.heightAnchor.constraint(equalToConstant: 32.0).isActive = true
         $0.font = UIFont.preferredFont(forTextStyle: .body)
@@ -104,7 +106,7 @@ private extension HomeViewController {
     func setupView() {
         view.backgroundColor = .white
 
-        [degreesTitleLabel, degreesTextView, UIView().configure(HomeViewController.underlineViewConfiguration)]
+        [temperatureTitleLabel, degreesTextView, UIView().configure(HomeViewController.underlineViewConfiguration)]
             .forEach(degreesBoxStackView.addArrangedSubview)
         [typeTitleLabel, typeButton, UIView().configure(HomeViewController.underlineViewConfiguration)]
             .forEach(typeBoxStackView.addArrangedSubview)
@@ -139,5 +141,18 @@ private extension HomeViewController {
 //        }
 //    }
 
-    func bind() {}
+    @objc func convert() {
+        viewModel.input.convert(Float(test)!)
+    }
+
+    func bind() {
+        convertButton.addTarget(self, action: #selector(convert), for: .touchUpInside)
+
+        viewModel.updateOutput = { [weak self] output in
+            self?.temperatureTitleLabel.text = output.temperatureTitleLabel
+            self?.resultLabel.text = output.resultValue.description
+
+            self?.typeButton.setTitle(output.typeValueLabel, for: .normal)
+        }
+    }
 }

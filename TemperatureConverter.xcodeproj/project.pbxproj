@@ -19,6 +19,9 @@
 		CC271CE228FEF75000B17F24 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC271CE128FEF75000B17F24 /* SnapKit */; };
 		CC271CE928FEF94500B17F24 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CE828FEF94500B17F24 /* Configurable.swift */; };
 		CC271CEB28FEFCED00B17F24 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */; };
+		CC271CED2906AFB600B17F24 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEC2906AFB600B17F24 /* ViewModel.swift */; };
+		CC271CEF2906B05C00B17F24 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */; };
+		CC271CF52906B88C00B17F24 /* TemperatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CF42906B88C00B17F24 /* TemperatureType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,9 @@
 		CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CC271CE828FEF94500B17F24 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		CC271CEC2906AFB600B17F24 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		CC271CF42906B88C00B17F24 /* TemperatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,7 @@
 			children = (
 				CC271CD728FEDD7A00B17F24 /* Navigation */,
 				CC271CDD28FEDEAA00B17F24 /* Scenes */,
+				CC271CF32906B88000B17F24 /* Models */,
 				CC271CE328FEF7F200B17F24 /* Helpers */,
 				CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */,
 				CC271CB128FED56600B17F24 /* LaunchScreen.storyboard */,
@@ -154,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				CC271CAA28FED56400B17F24 /* HomeViewController.swift */,
+				CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -179,8 +187,17 @@
 			isa = PBXGroup;
 			children = (
 				CC271CE828FEF94500B17F24 /* Configurable.swift */,
+				CC271CEC2906AFB600B17F24 /* ViewModel.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CC271CF32906B88000B17F24 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CC271CF42906B88C00B17F24 /* TemperatureType.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,9 +362,12 @@
 				CC271CEB28FEFCED00B17F24 /* UIView+Extensions.swift in Sources */,
 				CC271CE928FEF94500B17F24 /* Configurable.swift in Sources */,
 				CC271CDF28FEE5AA00B17F24 /* SceneDelegate.swift in Sources */,
+				CC271CEF2906B05C00B17F24 /* HomeViewModel.swift in Sources */,
 				CC271CDB28FEDE9400B17F24 /* RootCoordinator.swift in Sources */,
 				CC271CAB28FED56400B17F24 /* HomeViewController.swift in Sources */,
 				CC271CD928FEDE3000B17F24 /* Coordinator.swift in Sources */,
+				CC271CED2906AFB600B17F24 /* ViewModel.swift in Sources */,
+				CC271CF52906B88C00B17F24 /* TemperatureType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
