@@ -8,9 +8,23 @@
 import Foundation
 
 class HomeViewModel: ViewModel {
+    typealias Input = HomeViewModelInput
+    typealias Output = HomeViewModelOutput
+
+    struct HomeViewModelInput {
+        var setTypeValue: ((TemperatureType) -> Void)!
+        var convert: ((String?) -> Void)!
+    }
+
+    struct HomeViewModelOutput {
+        var temperatureTitle = String()
+        var typeTitle = String()
+        var result = String.none
+    }
+
     // MARK: - Properties
     var input: HomeViewModelInput
-    var updateOutput: ((HomeViewModelOutput) -> Void)?
+    var emit: ((HomeViewModelOutput) -> Void)?
 
     private var output: HomeViewModelOutput
     private var temperatureType = TemperatureType.degrees
@@ -24,67 +38,56 @@ class HomeViewModel: ViewModel {
         initiateOutput()
     }
 
-    private func bindInput() {
+    // MARK: - API
+    func getCurrent() -> HomeViewModelOutput { output }
+}
+
+// MARK: - Helpers
+private extension HomeViewModel {
+    func bindInput() {
         input.setTypeValue = { [weak self] in self?.setTypeValue($0) }
         input.convert = { [weak self] in self?.convert($0) }
     }
 
-    private func initiateOutput() {
+    func initiateOutput() {
         setTypeValue(temperatureType)
     }
 
-    // MARK: - Methods
-    private func setTypeValue(_ type: TemperatureType) {
+    func setTypeValue(_ type: TemperatureType) {
         temperatureType = type
 
         switch type {
         case .fahrenheir:
-            output.temperatureTitleLabel = TemperatureType.degrees.rawValue
-            output.typeValueLabel = TemperatureType.fahrenheir.rawValue
+            output.temperatureTitle = TemperatureType.degrees.rawValue
+            output.typeTitle = TemperatureType.fahrenheir.rawValue
         case .degrees:
-            output.temperatureTitleLabel = TemperatureType.fahrenheir.rawValue
-            output.typeValueLabel = TemperatureType.degrees.rawValue
+            output.temperatureTitle = TemperatureType.fahrenheir.rawValue
+            output.typeTitle = TemperatureType.degrees.rawValue
         }
 
-        updateOutput?(output)
+        emit?(output)
     }
 
-    private func convert(_ text: String?) {
+    func convert(_ text: String?) {
         guard let text = text, let value = Float(text) else {
-            output.resultValue = String()
-            updateOutput?(output)
+            output.result = String.none
+            emit?(output)
             return
         }
 
         switch temperatureType {
         case .degrees:
             let result = (value - 32.0) * 5 / 9
-            output.resultValue = result.description
+            output.result = result.description
         case .fahrenheir:
             let result = value * (9 / 5) + 32
-            output.resultValue = result.description
+            output.result = result.description
         }
 
-        updateOutput?(output)
+        emit?(output)
     }
 }
 
-// MARK: - ViewModel
-extension HomeViewModel {
-    typealias Input = HomeViewModelInput
-    typealias Output = HomeViewModelOutput
-
-    struct HomeViewModelInput {
-        var setTypeValue: ((TemperatureType) -> Void)!
-
-        var convert: ((String?) -> Void)!
-    }
-
-    struct HomeViewModelOutput {
-        var temperatureTitleLabel = String()
-        var typeValueLabel = String()
-        var resultValue = String()
-    }
-
-    func getCurrent() -> HomeViewModelOutput { output }
+private extension String {
+    static let none = "None"
 }

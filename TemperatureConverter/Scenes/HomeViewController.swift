@@ -10,38 +10,34 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     // MARK: - Properties
-    static let labelConfiguration: (UILabel) -> Void = {
+    var viewModel: HomeViewModel!
+
+    static var underlineView: UIView {
+        UIView().configure {
+            $0.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
+            $0.backgroundColor = .systemFill
+        }
+    }
+
+    static let titleLabelConfiguration: (UILabel) -> Void = {
         $0.textColor = .gray
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
-    static let boxStackViewConfiguration: (UIStackView) -> Void = {
+    static let stackViewConfiguration: (UIStackView) -> Void = {
         $0.axis = .vertical
         $0.spacing = 8.0
     }
 
-    static let underlineViewConfiguration: (UIView) -> Void = {
-        $0.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
-        $0.backgroundColor = .systemGray6
-    }
-
-    var viewModel: HomeViewModel!
-
     // MARK: - UI elements
-    let stackView = UIStackView().configure {
-        $0.axis = .vertical
-        $0.spacing = 32.0
-    }
-
-    let stackViewWrapper = UIView().configure {
+    let mainStackViewWrapper = UIView().configure {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8.0
     }
 
-    let stackView2 = UIStackView().configure {
-        $0.axis = .horizontal
-        $0.spacing = 16.0
-        $0.distribution = .fillEqually
+    let mainStackView = UIStackView().configure {
+        $0.axis = .vertical
+        $0.spacing = 32.0
     }
 
     let headlineLabel = UILabel().configure {
@@ -50,31 +46,36 @@ class HomeViewController: UIViewController {
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     }
 
-    let degreesBoxStackView = UIStackView().configure(HomeViewController.boxStackViewConfiguration)
-    let temperatureTitleLabel = UILabel().configure(HomeViewController.labelConfiguration)
-    let degreesTextField = UITextField().configure {
+    let inputsStackView = UIStackView().configure {
+        $0.axis = .horizontal
+        $0.spacing = 16.0
+        $0.distribution = .fillEqually
+    }
+
+    let temperatureStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
+    let temperatureTitleLabel = UILabel().configure(HomeViewController.titleLabelConfiguration)
+    let temperatureInputTextField = UITextField().configure {
         $0.heightAnchor.constraint(equalToConstant: 32.0).isActive = true
         $0.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         $0.textColor = .black
         $0.keyboardType = .numbersAndPunctuation
     }
 
-    let typeBoxStackView = UIStackView().configure(HomeViewController.boxStackViewConfiguration)
+    let typeStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
     let typeTitleLabel = UILabel()
-        .configure(HomeViewController.labelConfiguration)
+        .configure(HomeViewController.titleLabelConfiguration)
         .configure { $0.text = "Type" }
-    let typeButton = UIButton(type: .system).configure {
+    let typeInputButton = UIButton(type: .system).configure {
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         $0.contentHorizontalAlignment = .leading
     }
 
-    let resultBoxStackView = UIStackView().configure(HomeViewController.boxStackViewConfiguration)
+    let resultStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
     let resultTitleLabel = UILabel()
-        .configure(HomeViewController.labelConfiguration)
+        .configure(HomeViewController.titleLabelConfiguration)
         .configure { $0.text = "Result" }
-    let resultLabel = UILabel().configure {
-        $0.text = "22.222"
+    let resultOutputLabel = UILabel().configure {
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 18, weight: .regular)
     }
@@ -91,78 +92,95 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setDelegatesAndTargets()
         setupView()
         bind()
-
-        degreesTextField.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(true, animated: true)
+
         configureWithViewModel(viewModel.getCurrent())
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        degreesTextField.becomeFirstResponder()
+        temperatureInputTextField.becomeFirstResponder()
     }
 }
 
+// MARK: - Helpers
 private extension HomeViewController {
-    // MARK: - Methods
+    func setDelegatesAndTargets() {
+        temperatureInputTextField.delegate = self
+
+        convertButton.addTarget(self, action: #selector(convert), for: .touchUpInside)
+    }
+
     func setupView() {
         view.backgroundColor = .systemGray6
 
-        [temperatureTitleLabel, degreesTextField, UIView().configure(HomeViewController.underlineViewConfiguration)]
-            .forEach(degreesBoxStackView.addArrangedSubview)
-        [typeTitleLabel, typeButton, UIView().configure(HomeViewController.underlineViewConfiguration)]
-            .forEach(typeBoxStackView.addArrangedSubview)
-        [resultTitleLabel, resultLabel, UIView().configure(HomeViewController.underlineViewConfiguration)]
-            .forEach(resultBoxStackView.addArrangedSubview)
+        view.addSubview(mainStackViewWrapper)
+        mainStackViewWrapper.addSubview(mainStackView)
 
-        [degreesBoxStackView, typeBoxStackView].forEach(stackView2.addArrangedSubview)
+        [
+            temperatureTitleLabel,
+            temperatureInputTextField,
+            HomeViewController.underlineView
+        ].forEach(temperatureStackView.addArrangedSubview)
+        [
+            typeTitleLabel,
+            typeInputButton,
+            HomeViewController.underlineView
+        ].forEach(typeStackView.addArrangedSubview)
+        [temperatureStackView, typeStackView].forEach(inputsStackView.addArrangedSubview)
 
-        view.addSubview(stackViewWrapper)
-        stackViewWrapper.addSubview(stackView)
+        [
+            resultTitleLabel,
+            resultOutputLabel,
+            HomeViewController.underlineView
+        ].forEach(resultStackView.addArrangedSubview)
 
         [
             headlineLabel,
-            stackView2,
-            resultBoxStackView,
+            inputsStackView,
+            resultStackView,
             convertButton
-        ].forEach(stackView.addArrangedSubview)
+        ].forEach(mainStackView.addArrangedSubview)
 
-        stackViewWrapper.snp.makeConstraints {
-            $0.top.leading.equalTo(view.safeAreaLayoutGuide).offset(12)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-12)
-        }
-
-        stackView.snp.makeConstraints {
-            $0.top.leading.equalTo(stackViewWrapper).offset(24)
-            $0.trailing.bottom.equalTo(stackViewWrapper).offset(-24)
-        }
+        installConstraints()
     }
 
-    @objc func convert() {
-        viewModel.input.convert(degreesTextField.text)
+    func installConstraints() {
+        mainStackViewWrapper.snp.makeConstraints {
+            $0.top.leading.equalTo(view.safeAreaLayoutGuide).offset(12)
+            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-12)
+        }
+
+        mainStackView.snp.makeConstraints {
+            $0.top.leading.equalTo(mainStackViewWrapper).offset(24)
+            $0.trailing.equalTo(mainStackViewWrapper).offset(-24)
+        }
     }
 
     func bind() {
-        convertButton.addTarget(self, action: #selector(convert), for: .touchUpInside)
-
-        viewModel.updateOutput = { [weak self] output in
+        viewModel.emit = { [weak self] output in
             self?.configureWithViewModel(output)
         }
     }
 
-    private func configureWithViewModel(_ output: HomeViewModel.HomeViewModelOutput) {
-        temperatureTitleLabel.text = output.temperatureTitleLabel
-        resultLabel.text = output.resultValue
+    func configureWithViewModel(_ output: HomeViewModel.Output) {
+        temperatureTitleLabel.text = output.temperatureTitle
+        resultOutputLabel.text = output.result
 
-        typeButton.setTitle(output.typeValueLabel, for: .normal)
+        typeInputButton.setTitle(output.typeTitle, for: .normal)
+    }
+
+    @objc func convert() {
+        viewModel.input.convert(temperatureInputTextField.text)
     }
 }
 

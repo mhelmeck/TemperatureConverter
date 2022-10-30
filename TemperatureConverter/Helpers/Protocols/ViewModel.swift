@@ -12,7 +12,7 @@ protocol ViewModel {
     associatedtype Output
 
     var input: Input { get set }
-    var updateOutput: ((Output) -> Void)? { get set }
+    var emit: ((Output) -> Void)? { get set }
 
     func getCurrent() -> Output
 }
