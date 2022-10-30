@@ -191,7 +191,7 @@ private extension HomeViewController {
         }
 
         pickerDelegateDataSource.didSelectRow = { [weak self] row in
-            self?.viewModel.input.setTypeForRow(row)
+            self?.viewModel.setType(forRow: row)
         }
     }
 
@@ -215,7 +215,7 @@ private extension HomeViewController {
 
 extension HomeViewController {
     @objc func temperatureInputTextFieldValueDidChange() {
-        viewModel.input.setTemperature(temperatureInputTextField.text)
+        viewModel.setTemperature(temperatureInputTextField.text)
     }
 
     @objc func typeInputButtonDidSelect() {
@@ -223,7 +223,7 @@ extension HomeViewController {
     }
 
     @objc func convertButtonDidSelect() {
-        viewModel.input.convert()
+        viewModel.convert()
     }
 }
 

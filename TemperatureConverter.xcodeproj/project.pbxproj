@@ -19,11 +19,12 @@
 		CC271CE228FEF75000B17F24 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC271CE128FEF75000B17F24 /* SnapKit */; };
 		CC271CE928FEF94500B17F24 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CE828FEF94500B17F24 /* Configurable.swift */; };
 		CC271CEB28FEFCED00B17F24 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */; };
-		CC271CED2906AFB600B17F24 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEC2906AFB600B17F24 /* ViewModel.swift */; };
+		CC271CED2906AFB600B17F24 /* ViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEC2906AFB600B17F24 /* ViewModelOutput.swift */; };
 		CC271CEF2906B05C00B17F24 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */; };
 		CC271CF52906B88C00B17F24 /* TemperatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CF42906B88C00B17F24 /* TemperatureType.swift */; };
 		CC5732CA290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732C9290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift */; };
 		CC5732CC290EF9EF00FFBB3F /* PickerDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732CB290EF9EF00FFBB3F /* PickerDelegateDataSource.swift */; };
+		CC5732D0290F342600FFBB3F /* HomeInputOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732CF290F342600FFBB3F /* HomeInputOutput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,11 +60,12 @@
 		CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CC271CE828FEF94500B17F24 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		CC271CEC2906AFB600B17F24 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		CC271CEC2906AFB600B17F24 /* ViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelOutput.swift; sourceTree = "<group>"; };
 		CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CC271CF42906B88C00B17F24 /* TemperatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureType.swift; sourceTree = "<group>"; };
 		CC5732C9290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureTypePickerDelegate.swift; sourceTree = "<group>"; };
 		CC5732CB290EF9EF00FFBB3F /* PickerDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerDelegateDataSource.swift; sourceTree = "<group>"; };
+		CC5732CF290F342600FFBB3F /* HomeInputOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInputOutput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				CC271CE828FEF94500B17F24 /* Configurable.swift */,
-				CC271CEC2906AFB600B17F24 /* ViewModel.swift */,
+				CC271CEC2906AFB600B17F24 /* ViewModelOutput.swift */,
 				CC5732CB290EF9EF00FFBB3F /* PickerDelegateDataSource.swift */,
 			);
 			path = Protocols;
@@ -216,10 +218,19 @@
 		CC5732CD290EFA2500FFBB3F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CC5732CE290F341D00FFBB3F /* Protocols */,
 				CC271CAA28FED56400B17F24 /* HomeViewController.swift */,
 				CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		CC5732CE290F341D00FFBB3F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CC5732CF290F342600FFBB3F /* HomeInputOutput.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,10 +398,11 @@
 				CC271CE928FEF94500B17F24 /* Configurable.swift in Sources */,
 				CC271CDF28FEE5AA00B17F24 /* SceneDelegate.swift in Sources */,
 				CC271CEF2906B05C00B17F24 /* HomeViewModel.swift in Sources */,
+				CC5732D0290F342600FFBB3F /* HomeInputOutput.swift in Sources */,
 				CC271CDB28FEDE9400B17F24 /* RootCoordinator.swift in Sources */,
 				CC271CAB28FED56400B17F24 /* HomeViewController.swift in Sources */,
 				CC271CD928FEDE3000B17F24 /* Coordinator.swift in Sources */,
-				CC271CED2906AFB600B17F24 /* ViewModel.swift in Sources */,
+				CC271CED2906AFB600B17F24 /* ViewModelOutput.swift in Sources */,
 				CC271CF52906B88C00B17F24 /* TemperatureType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
