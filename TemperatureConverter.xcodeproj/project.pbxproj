@@ -22,6 +22,8 @@
 		CC271CED2906AFB600B17F24 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEC2906AFB600B17F24 /* ViewModel.swift */; };
 		CC271CEF2906B05C00B17F24 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */; };
 		CC271CF52906B88C00B17F24 /* TemperatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CF42906B88C00B17F24 /* TemperatureType.swift */; };
+		CC5732CA290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732C9290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift */; };
+		CC5732CC290EF9EF00FFBB3F /* PickerDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732CB290EF9EF00FFBB3F /* PickerDelegateDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		CC271CEC2906AFB600B17F24 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CC271CF42906B88C00B17F24 /* TemperatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureType.swift; sourceTree = "<group>"; };
+		CC5732C9290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureTypePickerDelegate.swift; sourceTree = "<group>"; };
+		CC5732CB290EF9EF00FFBB3F /* PickerDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerDelegateDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +118,7 @@
 				CC271CD728FEDD7A00B17F24 /* Navigation */,
 				CC271CDD28FEDEAA00B17F24 /* Scenes */,
 				CC271CF32906B88000B17F24 /* Models */,
-				CC271CE328FEF7F200B17F24 /* Helpers */,
+				CC271CE328FEF7F200B17F24 /* Utilities */,
 				CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */,
 				CC271CB128FED56600B17F24 /* LaunchScreen.storyboard */,
 				CC271CAF28FED56600B17F24 /* Assets.xcassets */,
@@ -160,19 +164,19 @@
 		CC271CDD28FEDEAA00B17F24 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				CC271CAA28FED56400B17F24 /* HomeViewController.swift */,
-				CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */,
+				CC5732CD290EFA2500FFBB3F /* Home */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		CC271CE328FEF7F200B17F24 /* Helpers */ = {
+		CC271CE328FEF7F200B17F24 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				CC271CE728FEF93F00B17F24 /* Protocols */,
+				CC5732C8290EF7E100FFBB3F /* Classes */,
 				CC271CE428FEF81500B17F24 /* Extensions */,
 			);
-			path = Helpers;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		CC271CE428FEF81500B17F24 /* Extensions */ = {
@@ -188,6 +192,7 @@
 			children = (
 				CC271CE828FEF94500B17F24 /* Configurable.swift */,
 				CC271CEC2906AFB600B17F24 /* ViewModel.swift */,
+				CC5732CB290EF9EF00FFBB3F /* PickerDelegateDataSource.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -198,6 +203,23 @@
 				CC271CF42906B88C00B17F24 /* TemperatureType.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CC5732C8290EF7E100FFBB3F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CC5732C9290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CC5732CD290EFA2500FFBB3F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CC271CAA28FED56400B17F24 /* HomeViewController.swift */,
+				CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +382,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC271CEB28FEFCED00B17F24 /* UIView+Extensions.swift in Sources */,
+				CC5732CC290EF9EF00FFBB3F /* PickerDelegateDataSource.swift in Sources */,
+				CC5732CA290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift in Sources */,
 				CC271CE928FEF94500B17F24 /* Configurable.swift in Sources */,
 				CC271CDF28FEE5AA00B17F24 /* SceneDelegate.swift in Sources */,
 				CC271CEF2906B05C00B17F24 /* HomeViewModel.swift in Sources */,

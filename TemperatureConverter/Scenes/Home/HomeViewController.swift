@@ -11,6 +11,7 @@ import SnapKit
 class HomeViewController: UIViewController {
     // MARK: - Properties
     var viewModel: HomeViewModel!
+    var pickerDelegateDataSource: PickerDelegateDataSource!
 
     static var underlineView: UIView {
         UIView().configure {
@@ -121,8 +122,8 @@ class HomeViewController: UIViewController {
 private extension HomeViewController {
     func setDelegatesAndTargets() {
         temperatureInputTextField.delegate = self
-        typePicerView.delegate = self
-        typePicerView.dataSource = self
+        typePicerView.delegate = pickerDelegateDataSource
+        typePicerView.dataSource = pickerDelegateDataSource
 
         convertButton.addTarget(self, action: #selector(convertButtonDidSelect), for: .touchUpInside)
         typeInputButton.addTarget(self, action: #selector(typeInputButtonDidSelect), for: .touchUpInside)
@@ -188,6 +189,10 @@ private extension HomeViewController {
         viewModel.emit = { [weak self] output in
             self?.configureWithViewModel(output)
         }
+
+        pickerDelegateDataSource.didSelectRow = { [weak self] row in
+            self?.viewModel.input.setTypeForRow(row)
+        }
     }
 
     func configureWithViewModel(_ output: HomeViewModel.Output) {
@@ -225,21 +230,5 @@ extension HomeViewController {
 extension HomeViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         hideTypePicerView()
-    }
-}
-
-extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        viewModel.output.pickerComponents
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        viewModel.output.picerRowsInComponent
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        viewModel.input.setTypeForRow(row)
-
-        return TemperatureType.allCases[row].rawValue
     }
 }

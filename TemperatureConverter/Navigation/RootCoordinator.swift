@@ -23,6 +23,7 @@ class RootCoordinator: Coordinator {
         let homeVC = HomeViewController()
 
         homeVC.viewModel = homeVM
+        homeVC.pickerDelegateDataSource = TemperatureTypePickerDelegateDataSource()
 
         rootNavigationController.setViewControllers([homeVC], animated: true)
     }
