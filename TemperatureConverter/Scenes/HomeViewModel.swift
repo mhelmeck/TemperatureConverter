@@ -49,12 +49,20 @@ class HomeViewModel: ViewModel {
         updateOutput?(output)
     }
 
-    private func convert(_ value: Float) {
+    private func convert(_ text: String?) {
+        guard let text = text, let value = Float(text) else {
+            output.resultValue = String()
+            updateOutput?(output)
+            return
+        }
+
         switch temperatureType {
         case .degrees:
-            output.resultValue = (value - 32.0) * 5/9
+            let result = (value - 32.0) * 5 / 9
+            output.resultValue = result.description
         case .fahrenheir:
-            output.resultValue = value * (9/5) + 32
+            let result = value * (9 / 5) + 32
+            output.resultValue = result.description
         }
 
         updateOutput?(output)
@@ -69,12 +77,14 @@ extension HomeViewModel {
     struct HomeViewModelInput {
         var setTypeValue: ((TemperatureType) -> Void)!
 
-        var convert: ((Float) -> Void)!
+        var convert: ((String?) -> Void)!
     }
 
     struct HomeViewModelOutput {
         var temperatureTitleLabel = String()
         var typeValueLabel = String()
-        var resultValue = Float()
+        var resultValue = String()
     }
+
+    func getCurrent() -> HomeViewModelOutput { output }
 }

@@ -9,21 +9,15 @@ import UIKit
 import SnapKit
 
 class HomeViewController: UIViewController {
-    private enum Constants {
-        static let marginOffset: CGFloat = 24.0
-        static let stackViewSpacing: CGFloat = 32.0
-        static let boxViewSpacing: CGFloat = 8.0
-    }
-
     // MARK: - Properties
     static let labelConfiguration: (UILabel) -> Void = {
-        $0.textColor = .lightGray
-        $0.font = UIFont.preferredFont(forTextStyle: .caption1)
+        $0.textColor = .gray
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
     static let boxStackViewConfiguration: (UIStackView) -> Void = {
         $0.axis = .vertical
-        $0.spacing = Constants.boxViewSpacing
+        $0.spacing = 8.0
     }
 
     static let underlineViewConfiguration: (UIView) -> Void = {
@@ -32,12 +26,16 @@ class HomeViewController: UIViewController {
     }
 
     var viewModel: HomeViewModel!
-    private var test: String = "0.0"
 
     // MARK: - UI elements
     let stackView = UIStackView().configure {
         $0.axis = .vertical
-        $0.spacing = Constants.stackViewSpacing
+        $0.spacing = 32.0
+    }
+
+    let stackViewWrapper = UIView().configure {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 8.0
     }
 
     let stackView2 = UIStackView().configure {
@@ -49,16 +47,16 @@ class HomeViewController: UIViewController {
     let headlineLabel = UILabel().configure {
         $0.text = "Temperature converter"
         $0.textColor = .black
-        $0.font = UIFont.preferredFont(forTextStyle: .headline)
-        $0.textAlignment = .center
+        $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     }
 
     let degreesBoxStackView = UIStackView().configure(HomeViewController.boxStackViewConfiguration)
     let temperatureTitleLabel = UILabel().configure(HomeViewController.labelConfiguration)
-    let degreesTextView = UITextView().configure {
+    let degreesTextField = UITextField().configure {
         $0.heightAnchor.constraint(equalToConstant: 32.0).isActive = true
-        $0.font = UIFont.preferredFont(forTextStyle: .body)
-        $0.textColor = .darkGray
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        $0.textColor = .black
+        $0.keyboardType = .numbersAndPunctuation
     }
 
     let typeBoxStackView = UIStackView().configure(HomeViewController.boxStackViewConfiguration)
@@ -66,9 +64,8 @@ class HomeViewController: UIViewController {
         .configure(HomeViewController.labelConfiguration)
         .configure { $0.text = "Type" }
     let typeButton = UIButton(type: .system).configure {
-        $0.setTitle("Fahrenheit", for: .normal)
-        $0.setTitleColor(.darkGray, for: .normal)
-        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         $0.contentHorizontalAlignment = .leading
     }
 
@@ -78,12 +75,16 @@ class HomeViewController: UIViewController {
         .configure { $0.text = "Result" }
     let resultLabel = UILabel().configure {
         $0.text = "22.222"
-        $0.textColor = .darkGray
-        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .regular)
     }
 
     let convertButton = UIButton(type: .system).configure {
         $0.setTitle("Convert", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = .systemBlue
+        $0.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        $0.layer.cornerRadius = 8.0
     }
 
     // MARK: - Lifecycle
@@ -92,21 +93,30 @@ class HomeViewController: UIViewController {
 
         setupView()
         bind()
+
+        degreesTextField.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(true, animated: true)
+        configureWithViewModel(viewModel.getCurrent())
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        degreesTextField.becomeFirstResponder()
     }
 }
 
 private extension HomeViewController {
     // MARK: - Methods
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
 
-        [temperatureTitleLabel, degreesTextView, UIView().configure(HomeViewController.underlineViewConfiguration)]
+        [temperatureTitleLabel, degreesTextField, UIView().configure(HomeViewController.underlineViewConfiguration)]
             .forEach(degreesBoxStackView.addArrangedSubview)
         [typeTitleLabel, typeButton, UIView().configure(HomeViewController.underlineViewConfiguration)]
             .forEach(typeBoxStackView.addArrangedSubview)
@@ -114,7 +124,10 @@ private extension HomeViewController {
             .forEach(resultBoxStackView.addArrangedSubview)
 
         [degreesBoxStackView, typeBoxStackView].forEach(stackView2.addArrangedSubview)
-        view.addSubview(stackView)
+
+        view.addSubview(stackViewWrapper)
+        stackViewWrapper.addSubview(stackView)
+
         [
             headlineLabel,
             stackView2,
@@ -122,37 +135,35 @@ private extension HomeViewController {
             convertButton
         ].forEach(stackView.addArrangedSubview)
 
-        stackView.snp.makeConstraints {
-            $0.top.leading.equalTo(view.safeAreaLayoutGuide).offset(Constants.marginOffset)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-Constants.marginOffset)
+        stackViewWrapper.snp.makeConstraints {
+            $0.top.leading.equalTo(view.safeAreaLayoutGuide).offset(12)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-12)
         }
-//        installConstraints()
+
+        stackView.snp.makeConstraints {
+            $0.top.leading.equalTo(stackViewWrapper).offset(24)
+            $0.trailing.bottom.equalTo(stackViewWrapper).offset(-24)
+        }
     }
 
-//    func installConstraints() {
-//        headlineLabel.snp.makeConstraints {
-//            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Constants.marginOffset)
-//            $0.centerX.equalToSuperview()
-//        }
-//
-//        convertButton.snp.makeConstraints {
-//            $0.centerX.equalToSuperview()
-//            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-Constants.marginOffset)
-//        }
-//    }
-
     @objc func convert() {
-        viewModel.input.convert(Float(test)!)
+        viewModel.input.convert(degreesTextField.text)
     }
 
     func bind() {
         convertButton.addTarget(self, action: #selector(convert), for: .touchUpInside)
 
         viewModel.updateOutput = { [weak self] output in
-            self?.temperatureTitleLabel.text = output.temperatureTitleLabel
-            self?.resultLabel.text = output.resultValue.description
-
-            self?.typeButton.setTitle(output.typeValueLabel, for: .normal)
+            self?.configureWithViewModel(output)
         }
     }
+
+    private func configureWithViewModel(_ output: HomeViewModel.HomeViewModelOutput) {
+        temperatureTitleLabel.text = output.temperatureTitleLabel
+        resultLabel.text = output.resultValue
+
+        typeButton.setTitle(output.typeValueLabel, for: .normal)
+    }
 }
+
+extension HomeViewController: UITextFieldDelegate {}
