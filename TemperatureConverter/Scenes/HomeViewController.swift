@@ -64,11 +64,16 @@ class HomeViewController: UIViewController {
     let typeStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
     let typeTitleLabel = UILabel()
         .configure(HomeViewController.titleLabelConfiguration)
-        .configure { $0.text = "Type" }
+        .configure { $0.text = "Result type" }
     let typeInputButton = UIButton(type: .system).configure {
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         $0.contentHorizontalAlignment = .leading
+    }
+    let typePicerView = UIPickerView().configure {
+        $00.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = 8.0
+        $0.isHidden = true
     }
 
     let resultStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
@@ -102,7 +107,7 @@ class HomeViewController: UIViewController {
 
         navigationController?.setNavigationBarHidden(true, animated: true)
 
-        configureWithViewModel(viewModel.getCurrent())
+        configureWithViewModel(viewModel.output)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -116,15 +121,20 @@ class HomeViewController: UIViewController {
 private extension HomeViewController {
     func setDelegatesAndTargets() {
         temperatureInputTextField.delegate = self
+        typePicerView.delegate = self
+        typePicerView.dataSource = self
 
-        convertButton.addTarget(self, action: #selector(convert), for: .touchUpInside)
+        convertButton.addTarget(self, action: #selector(convertButtonDidSelect), for: .touchUpInside)
+        typeInputButton.addTarget(self, action: #selector(typeInputButtonDidSelect), for: .touchUpInside)
+        temperatureInputTextField.addTarget(
+            self,
+            action: #selector(temperatureInputTextFieldValueDidChange),
+            for: .editingChanged
+        )
     }
 
     func setupView() {
         view.backgroundColor = .systemGray6
-
-        view.addSubview(mainStackViewWrapper)
-        mainStackViewWrapper.addSubview(mainStackView)
 
         [
             temperatureTitleLabel,
@@ -151,6 +161,10 @@ private extension HomeViewController {
             convertButton
         ].forEach(mainStackView.addArrangedSubview)
 
+        mainStackViewWrapper.addSubview(mainStackView)
+        mainStackViewWrapper.addSubview(typePicerView)
+        view.addSubview(mainStackViewWrapper)
+
         installConstraints()
     }
 
@@ -163,6 +177,10 @@ private extension HomeViewController {
         mainStackView.snp.makeConstraints {
             $0.top.leading.equalTo(mainStackViewWrapper).offset(24)
             $0.trailing.equalTo(mainStackViewWrapper).offset(-24)
+        }
+
+        typePicerView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalTo(mainStackViewWrapper)
         }
     }
 
@@ -179,9 +197,49 @@ private extension HomeViewController {
         typeInputButton.setTitle(output.typeTitle, for: .normal)
     }
 
-    @objc func convert() {
-        viewModel.input.convert(temperatureInputTextField.text)
+    func hideTypePicerView() {
+        typePicerView.isHidden = true
+        temperatureInputTextField.becomeFirstResponder()
+    }
+
+    func showTypePicerView() {
+        temperatureInputTextField.resignFirstResponder()
+        typePicerView.isHidden = false
     }
 }
 
-extension HomeViewController: UITextFieldDelegate {}
+extension HomeViewController {
+    @objc func temperatureInputTextFieldValueDidChange() {
+        viewModel.input.setTemperature(temperatureInputTextField.text)
+    }
+
+    @objc func typeInputButtonDidSelect() {
+        showTypePicerView()
+    }
+
+    @objc func convertButtonDidSelect() {
+        viewModel.input.convert()
+    }
+}
+
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        hideTypePicerView()
+    }
+}
+
+extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        viewModel.output.pickerComponents
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        viewModel.output.picerRowsInComponent
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        viewModel.input.setTypeForRow(row)
+
+        return TemperatureType.allCases[row].rawValue
+    }
+}

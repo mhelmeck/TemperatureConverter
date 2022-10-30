@@ -12,22 +12,27 @@ class HomeViewModel: ViewModel {
     typealias Output = HomeViewModelOutput
 
     struct HomeViewModelInput {
-        var setTypeValue: ((TemperatureType) -> Void)!
-        var convert: ((String?) -> Void)!
+        var setTemperature: ((String?) -> Void)!
+        var setTypeForRow: ((Int) -> Void)!
+        var convert: (() -> Void)!
     }
 
     struct HomeViewModelOutput {
         var temperatureTitle = String()
         var typeTitle = String()
         var result = String.none
+
+        var pickerComponents = 1
+        var picerRowsInComponent = TemperatureType.allCases.count
     }
 
     // MARK: - Properties
     var input: HomeViewModelInput
+    var output: HomeViewModelOutput
     var emit: ((HomeViewModelOutput) -> Void)?
 
-    private var output: HomeViewModelOutput
-    private var temperatureType = TemperatureType.degrees
+    private var temperatureType = TemperatureType.celsius
+    private var temperature: Float?
 
     // MARK: - Init
     init() {
@@ -37,50 +42,52 @@ class HomeViewModel: ViewModel {
         bindInput()
         initiateOutput()
     }
-
-    // MARK: - API
-    func getCurrent() -> HomeViewModelOutput { output }
 }
 
 // MARK: - Helpers
 private extension HomeViewModel {
     func bindInput() {
-        input.setTypeValue = { [weak self] in self?.setTypeValue($0) }
-        input.convert = { [weak self] in self?.convert($0) }
+        input.setTemperature = { [weak self] in self?.setTemperature($0) }
+        input.setTypeForRow = { [weak self] in self?.setTemperatureType(TemperatureType.allCases[$0]) }
+        input.convert = { [weak self] in self?.convert() }
     }
 
     func initiateOutput() {
-        setTypeValue(temperatureType)
+        setTemperatureType(temperatureType)
     }
 
-    func setTypeValue(_ type: TemperatureType) {
+    func setTemperature(_ value: String?) {
+        temperature = value.flatMap { Float($0) }
+    }
+
+    func setTemperatureType(_ type: TemperatureType) {
         temperatureType = type
 
         switch type {
         case .fahrenheir:
-            output.temperatureTitle = TemperatureType.degrees.rawValue
+            output.temperatureTitle = TemperatureType.celsius.rawValue
             output.typeTitle = TemperatureType.fahrenheir.rawValue
-        case .degrees:
+        case .celsius:
             output.temperatureTitle = TemperatureType.fahrenheir.rawValue
-            output.typeTitle = TemperatureType.degrees.rawValue
+            output.typeTitle = TemperatureType.celsius.rawValue
         }
 
-        emit?(output)
+        convert()
     }
 
-    func convert(_ text: String?) {
-        guard let text = text, let value = Float(text) else {
+    func convert() {
+        guard let temperature = temperature else {
             output.result = String.none
             emit?(output)
             return
         }
 
         switch temperatureType {
-        case .degrees:
-            let result = (value - 32.0) * 5 / 9
+        case .celsius:
+            let result = (temperature - 32.0) * 5 / 9
             output.result = result.description
         case .fahrenheir:
-            let result = value * (9 / 5) + 32
+            let result = temperature * (9 / 5) + 32
             output.result = result.description
         }
 
