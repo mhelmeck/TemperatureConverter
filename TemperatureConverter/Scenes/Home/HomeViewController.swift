@@ -120,7 +120,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: PresentableHomeViewController {
     static func create(
-        with viewModel: HomeViewModel,
+        with viewModel: HomeViewModelInputOutput,
         pickerDelegateDataSource: PickerDelegateDataSource
     ) -> HomeViewController {
         let controller = HomeViewController()
