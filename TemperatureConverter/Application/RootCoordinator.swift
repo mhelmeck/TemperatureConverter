@@ -12,15 +12,18 @@ class RootCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var rootNavigationController: UINavigationController
 
+    let viewControllerBuilder: ViewControllerBuilding
+
     // MARK: - Init
-    init(rootNavigationController: UINavigationController) {
+    init(rootNavigationController: UINavigationController, viewControllerBuilder: ViewControllerBuilding) {
         self.rootNavigationController = rootNavigationController
+        self.viewControllerBuilder = viewControllerBuilder
     }
 
     // MARK: - Methods
     func start() {
-        let homeVC = HomeViewController()
+        let homeVC = viewControllerBuilder.buildHomeViewController()
 
-        rootNavigationController.setViewControllers([homeVC], animated: true)
+        rootNavigationController.setViewControllers([homeVC.toPresent()], animated: true)
     }
 }
