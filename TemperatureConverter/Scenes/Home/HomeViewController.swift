@@ -10,7 +10,7 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     // MARK: - Properties
-    var viewModel: HomeViewModel!
+    var viewModel: HomeViewModelInputOutput!
     var pickerDelegateDataSource: PickerDelegateDataSource!
 
     static var underlineView: UIView {
@@ -118,6 +118,19 @@ class HomeViewController: UIViewController {
     }
 }
 
+extension HomeViewController: PresentableHomeViewController {
+    static func create(
+        with viewModel: HomeViewModel,
+        pickerDelegateDataSource: PickerDelegateDataSource
+    ) -> HomeViewController {
+        let controller = HomeViewController()
+        controller.viewModel = viewModel
+        controller.pickerDelegateDataSource = pickerDelegateDataSource
+
+        return controller
+    }
+}
+
 // MARK: - Helpers
 private extension HomeViewController {
     func setDelegatesAndTargets() {
@@ -211,9 +224,7 @@ private extension HomeViewController {
         temperatureInputTextField.resignFirstResponder()
         typePicerView.isHidden = false
     }
-}
 
-extension HomeViewController {
     @objc func temperatureInputTextFieldValueDidChange() {
         viewModel.setTemperature(temperatureInputTextField.text)
     }

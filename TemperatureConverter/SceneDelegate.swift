@@ -16,8 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
     // MARK: - Methods
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let rootNavigationController = UINavigationController()
+        let viewControllerBuilder = ViewControllerBuilder()
 
-        coordinator = RootCoordinator(rootNavigationController: rootNavigationController)
+        coordinator = RootCoordinator(
+            rootNavigationController: rootNavigationController,
+            viewControllerBuilder: viewControllerBuilder
+        )
         coordinator?.start()
         guard let windowScene = (scene as? UIWindowScene) else { return }
 

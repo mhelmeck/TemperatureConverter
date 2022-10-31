@@ -7,33 +7,23 @@
 
 import Foundation
 
-class HomeViewModel: HomeInputOutput {
-    typealias Output = HomeViewModelOutput
-
-    struct HomeViewModelOutput {
-        var temperatureTitle = String()
-        var typeTitle = String()
-        var result = String.none
-
-        var pickerComponents = 1
-        var picerRowsInComponent = TemperatureType.allCases.count
-    }
+class HomeViewModel: HomeViewModelInputOutput {
+    // MARK: - Output
+    var output: Output
+    var emit: ((Output) -> Void)?
 
     // MARK: - Properties
-    var output: HomeViewModelOutput
-    var emit: ((HomeViewModelOutput) -> Void)?
-
     private var temperatureType = TemperatureType.celsius
     private var temperature: Float?
 
     // MARK: - Init
     init() {
-        output = HomeViewModelOutput()
+        output = Output()
 
         initiateOutput()
     }
 
-    // MARK: - API
+    // MARK: - Input
     func setTemperature(_ string: String?) {
         temperature = string.flatMap { Float($0) }
     }
@@ -41,7 +31,7 @@ class HomeViewModel: HomeInputOutput {
     func setType(forRow row: Int) {
         temperatureType = TemperatureType.allCases[row]
 
-        convert()
+        setTemperatureType(temperatureType)
     }
 
     func convert() {
@@ -84,8 +74,4 @@ private extension HomeViewModel {
 
         convert()
     }
-}
-
-private extension String {
-    static let none = "None"
 }

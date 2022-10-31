@@ -19,12 +19,16 @@
 		CC271CE228FEF75000B17F24 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC271CE128FEF75000B17F24 /* SnapKit */; };
 		CC271CE928FEF94500B17F24 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CE828FEF94500B17F24 /* Configurable.swift */; };
 		CC271CEB28FEFCED00B17F24 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */; };
-		CC271CED2906AFB600B17F24 /* ViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEC2906AFB600B17F24 /* ViewModelOutput.swift */; };
 		CC271CEF2906B05C00B17F24 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */; };
 		CC271CF52906B88C00B17F24 /* TemperatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CF42906B88C00B17F24 /* TemperatureType.swift */; };
 		CC5732CA290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732C9290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift */; };
 		CC5732CC290EF9EF00FFBB3F /* PickerDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732CB290EF9EF00FFBB3F /* PickerDelegateDataSource.swift */; };
-		CC5732D0290F342600FFBB3F /* HomeInputOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732CF290F342600FFBB3F /* HomeInputOutput.swift */; };
+		CC5732D0290F342600FFBB3F /* HomeViewModelInputOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732CF290F342600FFBB3F /* HomeViewModelInputOutput.swift */; };
+		CC5732D2290F371600FFBB3F /* PresentableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732D1290F371600FFBB3F /* PresentableViewController.swift */; };
+		CC5732D4290F37A200FFBB3F /* PresentableHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732D3290F37A200FFBB3F /* PresentableHomeViewController.swift */; };
+		CC5732D6290F3C5A00FFBB3F /* ViewControllerBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732D5290F3C5A00FFBB3F /* ViewControllerBuilding.swift */; };
+		CC5732D8290F3D0F00FFBB3F /* ViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732D7290F3D0F00FFBB3F /* ViewControllerBuilder.swift */; };
+		CC5732DA290F406C00FFBB3F /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5732D9290F406C00FFBB3F /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,12 +64,16 @@
 		CC271CDE28FEE5AA00B17F24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CC271CE828FEF94500B17F24 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		CC271CEC2906AFB600B17F24 /* ViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelOutput.swift; sourceTree = "<group>"; };
 		CC271CEE2906B05C00B17F24 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CC271CF42906B88C00B17F24 /* TemperatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureType.swift; sourceTree = "<group>"; };
 		CC5732C9290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureTypePickerDelegate.swift; sourceTree = "<group>"; };
 		CC5732CB290EF9EF00FFBB3F /* PickerDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerDelegateDataSource.swift; sourceTree = "<group>"; };
-		CC5732CF290F342600FFBB3F /* HomeInputOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInputOutput.swift; sourceTree = "<group>"; };
+		CC5732CF290F342600FFBB3F /* HomeViewModelInputOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelInputOutput.swift; sourceTree = "<group>"; };
+		CC5732D1290F371600FFBB3F /* PresentableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableViewController.swift; sourceTree = "<group>"; };
+		CC5732D3290F37A200FFBB3F /* PresentableHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableHomeViewController.swift; sourceTree = "<group>"; };
+		CC5732D5290F3C5A00FFBB3F /* ViewControllerBuilding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerBuilding.swift; sourceTree = "<group>"; };
+		CC5732D7290F3D0F00FFBB3F /* ViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerBuilder.swift; sourceTree = "<group>"; };
+		CC5732D9290F406C00FFBB3F /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +125,7 @@
 		CC271CA528FED56400B17F24 /* TemperatureConverter */ = {
 			isa = PBXGroup;
 			children = (
-				CC271CD728FEDD7A00B17F24 /* Navigation */,
+				CC271CD728FEDD7A00B17F24 /* Application */,
 				CC271CDD28FEDEAA00B17F24 /* Scenes */,
 				CC271CF32906B88000B17F24 /* Models */,
 				CC271CE328FEF7F200B17F24 /* Utilities */,
@@ -146,19 +154,21 @@
 			path = TemperatureConverterUITests;
 			sourceTree = "<group>";
 		};
-		CC271CD728FEDD7A00B17F24 /* Navigation */ = {
+		CC271CD728FEDD7A00B17F24 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				CC271CDC28FEDE9A00B17F24 /* Protocols */,
 				CC271CDA28FEDE9400B17F24 /* RootCoordinator.swift */,
+				CC5732D7290F3D0F00FFBB3F /* ViewControllerBuilder.swift */,
 			);
-			path = Navigation;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		CC271CDC28FEDE9A00B17F24 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				CC271CD828FEDE3000B17F24 /* Coordinator.swift */,
+				CC5732D5290F3C5A00FFBB3F /* ViewControllerBuilding.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -185,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				CC271CEA28FEFCED00B17F24 /* UIView+Extensions.swift */,
+				CC5732D9290F406C00FFBB3F /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -193,7 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				CC271CE828FEF94500B17F24 /* Configurable.swift */,
-				CC271CEC2906AFB600B17F24 /* ViewModelOutput.swift */,
+				CC5732D1290F371600FFBB3F /* PresentableViewController.swift */,
 				CC5732CB290EF9EF00FFBB3F /* PickerDelegateDataSource.swift */,
 			);
 			path = Protocols;
@@ -228,7 +239,8 @@
 		CC5732CE290F341D00FFBB3F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				CC5732CF290F342600FFBB3F /* HomeInputOutput.swift */,
+				CC5732D3290F37A200FFBB3F /* PresentableHomeViewController.swift */,
+				CC5732CF290F342600FFBB3F /* HomeViewModelInputOutput.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -394,15 +406,19 @@
 			files = (
 				CC271CEB28FEFCED00B17F24 /* UIView+Extensions.swift in Sources */,
 				CC5732CC290EF9EF00FFBB3F /* PickerDelegateDataSource.swift in Sources */,
+				CC5732D2290F371600FFBB3F /* PresentableViewController.swift in Sources */,
 				CC5732CA290EF81700FFBB3F /* TemperatureTypePickerDelegate.swift in Sources */,
 				CC271CE928FEF94500B17F24 /* Configurable.swift in Sources */,
+				CC5732D4290F37A200FFBB3F /* PresentableHomeViewController.swift in Sources */,
 				CC271CDF28FEE5AA00B17F24 /* SceneDelegate.swift in Sources */,
 				CC271CEF2906B05C00B17F24 /* HomeViewModel.swift in Sources */,
-				CC5732D0290F342600FFBB3F /* HomeInputOutput.swift in Sources */,
+				CC5732D0290F342600FFBB3F /* HomeViewModelInputOutput.swift in Sources */,
 				CC271CDB28FEDE9400B17F24 /* RootCoordinator.swift in Sources */,
 				CC271CAB28FED56400B17F24 /* HomeViewController.swift in Sources */,
+				CC5732D6290F3C5A00FFBB3F /* ViewControllerBuilding.swift in Sources */,
+				CC5732DA290F406C00FFBB3F /* String+Extensions.swift in Sources */,
+				CC5732D8290F3D0F00FFBB3F /* ViewControllerBuilder.swift in Sources */,
 				CC271CD928FEDE3000B17F24 /* Coordinator.swift in Sources */,
-				CC271CED2906AFB600B17F24 /* ViewModelOutput.swift in Sources */,
 				CC271CF52906B88C00B17F24 /* TemperatureType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
