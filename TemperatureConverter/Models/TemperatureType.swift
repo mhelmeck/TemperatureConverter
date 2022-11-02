@@ -9,5 +9,5 @@ import Foundation
 
 enum TemperatureType: String, CaseIterable {
     case celsius = "Celsius"
-    case fahrenheir = "Fahrenheir"
+    case fahrenheit = "Fahrenheit"
 }

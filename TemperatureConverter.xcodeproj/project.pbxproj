@@ -10,7 +10,7 @@
 		CC271CAB28FED56400B17F24 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CAA28FED56400B17F24 /* HomeViewController.swift */; };
 		CC271CB028FED56600B17F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC271CAF28FED56600B17F24 /* Assets.xcassets */; };
 		CC271CB328FED56600B17F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC271CB128FED56600B17F24 /* LaunchScreen.storyboard */; };
-		CC271CBE28FED56600B17F24 /* TemperatureConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CBD28FED56600B17F24 /* TemperatureConverterTests.swift */; };
+		CC271CBE28FED56600B17F24 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CBD28FED56600B17F24 /* HomeViewModelTests.swift */; };
 		CC271CC828FED56600B17F24 /* TemperatureConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CC728FED56600B17F24 /* TemperatureConverterUITests.swift */; };
 		CC271CCA28FED56600B17F24 /* TemperatureConverterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CC928FED56600B17F24 /* TemperatureConverterUITestsLaunchTests.swift */; };
 		CC271CD928FEDE3000B17F24 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC271CD828FEDE3000B17F24 /* Coordinator.swift */; };
@@ -55,7 +55,7 @@
 		CC271CB228FED56600B17F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC271CB428FED56600B17F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC271CB928FED56600B17F24 /* TemperatureConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemperatureConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC271CBD28FED56600B17F24 /* TemperatureConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureConverterTests.swift; sourceTree = "<group>"; };
+		CC271CBD28FED56600B17F24 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		CC271CC328FED56600B17F24 /* TemperatureConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemperatureConverterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC271CC728FED56600B17F24 /* TemperatureConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureConverterUITests.swift; sourceTree = "<group>"; };
 		CC271CC928FED56600B17F24 /* TemperatureConverterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureConverterUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		CC271CBC28FED56600B17F24 /* TemperatureConverterTests */ = {
 			isa = PBXGroup;
 			children = (
-				CC271CBD28FED56600B17F24 /* TemperatureConverterTests.swift */,
+				CC271CBD28FED56600B17F24 /* HomeViewModelTests.swift */,
 			);
 			path = TemperatureConverterTests;
 			sourceTree = "<group>";
@@ -427,7 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC271CBE28FED56600B17F24 /* TemperatureConverterTests.swift in Sources */,
+				CC271CBE28FED56600B17F24 /* HomeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

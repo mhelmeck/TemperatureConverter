@@ -13,7 +13,7 @@ class HomeViewModel: HomeViewModelInputOutput {
     var emit: ((Output) -> Void)?
 
     // MARK: - Properties
-    private var temperatureType = TemperatureType.celsius
+    private var temperatureResultType = TemperatureType.fahrenheit
     private var temperature: Float?
 
     // MARK: - Init
@@ -28,10 +28,10 @@ class HomeViewModel: HomeViewModelInputOutput {
         temperature = string.flatMap { Float($0) }
     }
 
-    func setType(forRow row: Int) {
-        temperatureType = TemperatureType.allCases[row]
+    func setTemperatureResultType(forRow row: Int) {
+        temperatureResultType = TemperatureType.allCases[row]
 
-        setTemperatureType(temperatureType)
+        convert(forResultType: temperatureResultType)
     }
 
     func convert() {
@@ -41,11 +41,11 @@ class HomeViewModel: HomeViewModelInputOutput {
             return
         }
 
-        switch temperatureType {
+        switch temperatureResultType {
         case .celsius:
             let result = (temperature - 32.0) * 5 / 9
             output.result = result.description
-        case .fahrenheir:
+        case .fahrenheit:
             let result = temperature * (9 / 5) + 32
             output.result = result.description
         }
@@ -57,19 +57,19 @@ class HomeViewModel: HomeViewModelInputOutput {
 // MARK: - Helpers
 private extension HomeViewModel {
     func initiateOutput() {
-        setTemperatureType(temperatureType)
+        convert(forResultType: temperatureResultType)
     }
 
-    func setTemperatureType(_ type: TemperatureType) {
-        temperatureType = type
+    func convert(forResultType resultType: TemperatureType) {
+        temperatureResultType = resultType
 
-        switch type {
-        case .fahrenheir:
-            output.temperatureTitle = TemperatureType.celsius.rawValue
-            output.typeTitle = TemperatureType.fahrenheir.rawValue
+        switch resultType {
+        case .fahrenheit:
+            output.convertToTitle = TemperatureType.fahrenheit.rawValue
+            output.convertFromTitle = TemperatureType.celsius.rawValue
         case .celsius:
-            output.temperatureTitle = TemperatureType.fahrenheir.rawValue
-            output.typeTitle = TemperatureType.celsius.rawValue
+            output.convertToTitle = TemperatureType.celsius.rawValue
+            output.convertFromTitle = TemperatureType.fahrenheit.rawValue
         }
 
         convert()

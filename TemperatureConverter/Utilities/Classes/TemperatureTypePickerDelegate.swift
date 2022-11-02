@@ -17,8 +17,10 @@ class TemperatureTypePickerDelegateDataSource: NSObject, PickerDelegateDataSourc
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        didSelectRow?(row)
-
         return TemperatureType.allCases[row].rawValue
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        didSelectRow?(row)
     }
 }
