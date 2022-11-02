@@ -68,7 +68,7 @@ extension HomeViewModelTests {
         sut.convert()
 
         // Then
-        XCTAssertEqual(sut.output, "37.77778")
+        XCTAssertEqual(sut.output.result, "37.77778")
     }
 
     func testConversionToFahrenheitForTemperature100() {
@@ -80,19 +80,6 @@ extension HomeViewModelTests {
         sut.convert()
 
         // Then
-        XCTAssertEqual(sut.output, "212.0")
-    }
-
-    func testA() {
-        // Given
-        sut.setTemperatureResultType(forRow: 0)
-        sut.setTemperature("100")
-
-        // When
-        sut.convert()
-        let output = sut.output
-
-        // Then
-        XCTAssertEqual(output.result, "37.77778")
+        XCTAssertEqual(sut.output.result, "212.0")
     }
 }
