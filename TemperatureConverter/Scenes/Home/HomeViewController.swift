@@ -21,8 +21,8 @@ class HomeViewController: UIViewController {
     }
 
     static let titleLabelConfiguration: (UILabel) -> Void = {
-        $0.textColor = .gray
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.textColor = .darkGray
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
     }
 
     static let stackViewConfiguration: (UIStackView) -> Void = {
@@ -47,7 +47,7 @@ class HomeViewController: UIViewController {
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     }
 
-    let inputsStackView = UIStackView().configure {
+    let convertFromRowStackView = UIStackView().configure {
         $0.axis = .horizontal
         $0.spacing = 16.0
         $0.distribution = .fillEqually
@@ -62,16 +62,16 @@ class HomeViewController: UIViewController {
         $0.keyboardType = .numbersAndPunctuation
     }
 
-    let convertToTypeStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
-    let convertToTypeTitleLabel = UILabel()
+    let convertionTypeStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
+    let convertionTypeTitleLabel = UILabel()
         .configure(HomeViewController.titleLabelConfiguration)
-        .configure { $0.text = "Convert to" }
-    let convertToTypeInputButton = UIButton(type: .system).configure {
-        $0.setTitleColor(.black, for: .normal)
+        .configure { $0.text = "Convertion type" }
+    let convertionTypeInputButton = UIButton(type: .system).configure {
+        $0.setTitleColor(.systemBlue, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         $0.contentHorizontalAlignment = .leading
     }
-    let convertToTypePicerView = UIPickerView().configure {
+    let convertionTypePicerView = UIPickerView().configure {
         $00.backgroundColor = .systemGray6
         $0.layer.cornerRadius = 8.0
         $0.isHidden = true
@@ -86,11 +86,10 @@ class HomeViewController: UIViewController {
     }
 
     let convertButton = UIButton(type: .system).configure {
-        $0.setTitle("Convert", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .systemBlue
-        $0.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
-        $0.layer.cornerRadius = 8.0
+        let config = UIImage.SymbolConfiguration(pointSize: 32)
+        let image = UIImage(systemName: "arrow.down.circle.fill", withConfiguration: config)
+
+        $0.setImage(image, for: .normal)
     }
 
     // MARK: - Lifecycle
@@ -134,11 +133,11 @@ extension HomeViewController: PresentableHomeViewController {
 private extension HomeViewController {
     func setDelegatesAndTargets() {
         convertFromInputTextField.delegate = self
-        convertToTypePicerView.delegate = pickerDelegateDataSource
-        convertToTypePicerView.dataSource = pickerDelegateDataSource
+        convertionTypePicerView.delegate = pickerDelegateDataSource
+        convertionTypePicerView.dataSource = pickerDelegateDataSource
 
         convertButton.addTarget(self, action: #selector(convertButtonDidSelect), for: .touchUpInside)
-        convertToTypeInputButton.addTarget(self, action: #selector(typeInputButtonDidSelect), for: .touchUpInside)
+        convertionTypeInputButton.addTarget(self, action: #selector(typeInputButtonDidSelect), for: .touchUpInside)
         convertFromInputTextField.addTarget(
             self,
             action: #selector(convertFromInputTextFieldValueDidChange),
@@ -154,28 +153,28 @@ private extension HomeViewController {
             convertFromInputTextField,
             HomeViewController.underlineView
         ].forEach(convertFromStackView.addArrangedSubview)
-        [
-            convertToTypeTitleLabel,
-            convertToTypeInputButton,
-            HomeViewController.underlineView
-        ].forEach(convertToTypeStackView.addArrangedSubview)
-        [convertFromStackView, convertToTypeStackView].forEach(inputsStackView.addArrangedSubview)
+
+        [convertFromStackView, convertButton].forEach(convertFromRowStackView.addArrangedSubview)
 
         [
             resultTitleLabel,
-            resultOutputLabel,
-            HomeViewController.underlineView
+            resultOutputLabel
         ].forEach(resultStackView.addArrangedSubview)
 
         [
+            convertionTypeTitleLabel,
+            convertionTypeInputButton
+        ].forEach(convertionTypeStackView.addArrangedSubview)
+
+        [
             headlineLabel,
-            inputsStackView,
+            convertFromRowStackView,
             resultStackView,
-            convertButton
+            convertionTypeStackView
         ].forEach(mainStackView.addArrangedSubview)
 
         mainStackViewWrapper.addSubview(mainStackView)
-        mainStackViewWrapper.addSubview(convertToTypePicerView)
+        mainStackViewWrapper.addSubview(convertionTypePicerView)
         view.addSubview(mainStackViewWrapper)
 
         installConstraints()
@@ -192,7 +191,7 @@ private extension HomeViewController {
             $0.trailing.equalTo(mainStackViewWrapper).offset(-24)
         }
 
-        convertToTypePicerView.snp.makeConstraints {
+        convertionTypePicerView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalTo(mainStackViewWrapper)
         }
     }
@@ -203,7 +202,7 @@ private extension HomeViewController {
         }
 
         pickerDelegateDataSource.didSelectRow = { [weak self] row in
-            self?.viewModel.setTemperatureResultType(forRow: row)
+            self?.viewModel.setConversionType(forRow: row)
         }
     }
 
@@ -212,17 +211,17 @@ private extension HomeViewController {
         resultTitleLabel.text = output.convertToTitle
         resultOutputLabel.text = output.result
 
-        convertToTypeInputButton.setTitle(output.convertToTitle, for: .normal)
+        convertionTypeInputButton.setTitle(output.conversionTypeTitle, for: .normal)
     }
 
     func hideTypePicerView() {
-        convertToTypePicerView.isHidden = true
+        convertionTypePicerView.isHidden = true
         convertFromInputTextField.becomeFirstResponder()
     }
 
     func showTypePicerView() {
         convertFromInputTextField.resignFirstResponder()
-        convertToTypePicerView.isHidden = false
+        convertionTypePicerView.isHidden = false
     }
 
     @objc func convertFromInputTextFieldValueDidChange() {

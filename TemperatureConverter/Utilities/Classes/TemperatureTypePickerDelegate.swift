@@ -13,11 +13,11 @@ class TemperatureTypePickerDelegateDataSource: NSObject, PickerDelegateDataSourc
     func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        TemperatureType.allCases.count
+        ConversionType.allCases.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return TemperatureType.allCases[row].rawValue
+        return ConversionType.allCases[row].title
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

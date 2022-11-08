@@ -11,7 +11,7 @@ typealias HomeViewModelInputOutput = HomeViewModelInput & HomeViewModelOutput
 
 protocol HomeViewModelInput {
     func setTemperature(_ string: String?)
-    func setTemperatureResultType(forRow row: Int)
+    func setConversionType(forRow row: Int)
     func convert()
 }
 
@@ -24,9 +24,10 @@ extension HomeViewModel {
     struct Output {
         var convertToTitle = String()
         var convertFromTitle = String()
+        var conversionTypeTitle = String()
         var result = String.none
 
         var pickerComponents = 1
-        var picerRowsInComponent = TemperatureType.allCases.count
+        var picerRowsInComponent = ConversionType.allCases.count
     }
 }
