@@ -13,7 +13,7 @@ class HomeViewModel: HomeViewModelInputOutput {
     var emit: ((Output) -> Void)?
 
     // MARK: - Properties
-    private var temperatureResultType = TemperatureType.fahrenheit
+    private var temperatureResultType = TemperatureType.celsius
     private var temperature: Float?
 
     // MARK: - Init
@@ -41,14 +41,15 @@ class HomeViewModel: HomeViewModelInputOutput {
             return
         }
 
-        switch temperatureResultType {
-        case .celsius:
-            let result = (temperature - 32.0) * 5 / 9
-            output.result = result.description
-        case .fahrenheit:
-            let result = temperature * (9 / 5) + 32
-            output.result = result.description
-        }
+        let result = {
+            switch temperatureResultType {
+            case .celsius:
+                return (temperature - 32.0) * 5 / 9
+            case .fahrenheit:
+                return temperature * (9 / 5) + 32
+            }
+        }()
+        output.result = String(format: "%.2f", result)
 
         emit?(output)
     }

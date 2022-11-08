@@ -28,8 +28,8 @@ extension HomeViewModelTests {
         let output = sut.output
 
         // Then
-        XCTAssertEqual(output.convertToTitle, "Fahrenheit")
-        XCTAssertEqual(output.convertFromTitle, "Celsius")
+        XCTAssertEqual(output.convertToTitle, "Celsius")
+        XCTAssertEqual(output.convertFromTitle, "Fahrenheit")
         XCTAssertEqual(output.result, "None")
         XCTAssertEqual(output.pickerComponents, 1)
         XCTAssertEqual(output.picerRowsInComponent, 2)
@@ -59,27 +59,101 @@ extension HomeViewModelTests {
         XCTAssertEqual(output.convertFromTitle, "Celsius")
     }
 
-    func testConversionToCelsiusForTemperature100() {
+    func testConversionToCelsiusForTemperature0() {
         // Given
         sut.setTemperatureResultType(forRow: 0)
-        sut.setTemperature("100")
+        sut.setTemperature("0")
 
         // When
         sut.convert()
 
         // Then
-        XCTAssertEqual(sut.output.result, "37.77778")
+        XCTAssertEqual(sut.output.result, "-17.78")
     }
 
-    func testConversionToFahrenheitForTemperature100() {
+    func testConversionToFahrenheitForTemperature0() {
         // Given
         sut.setTemperatureResultType(forRow: 1)
-        sut.setTemperature("100")
+        sut.setTemperature("0")
 
         // When
         sut.convert()
 
         // Then
-        XCTAssertEqual(sut.output.result, "212.0")
+        XCTAssertEqual(sut.output.result, "32.00")
+    }
+
+    func testAutoConversionWhenSwichRowTo0() {
+        // Given
+        sut.setTemperatureResultType(forRow: 1)
+        sut.setTemperature("0")
+        sut.convert()
+
+        // When
+        sut.setTemperatureResultType(forRow: 0)
+
+        // Then
+        XCTAssertEqual(sut.output.result, "-17.78")
+    }
+
+    func testAutoConversionWhenSwichRowTo1() {
+        // Given
+        sut.setTemperatureResultType(forRow: 0)
+        sut.setTemperature("0")
+        sut.convert()
+
+        // When
+        sut.setTemperatureResultType(forRow: 1)
+
+        // Then
+        XCTAssertEqual(sut.output.result, "32.00")
+    }
+
+    func testConversionToFahrenheitForInvalidTemperature() {
+        // Given
+        sut.setTemperatureResultType(forRow: 1)
+        sut.setTemperature("abc")
+
+        // When
+        sut.convert()
+
+        // Then
+        XCTAssertEqual(sut.output.result, "None")
+    }
+
+    func testConversionToCelsiusForInvalidTemperature() {
+        // Given
+        sut.setTemperatureResultType(forRow: 0)
+        sut.setTemperature("abc")
+
+        // When
+        sut.convert()
+
+        // Then
+        XCTAssertEqual(sut.output.result, "None")
+    }
+
+    func testConversionToFahrenheitForEmptyTemperature() {
+        // Given
+        sut.setTemperatureResultType(forRow: 1)
+        sut.setTemperature("")
+
+        // When
+        sut.convert()
+
+        // Then
+        XCTAssertEqual(sut.output.result, "None")
+    }
+
+    func testConversionToCelsiusForEmptyTemperature() {
+        // Given
+        sut.setTemperatureResultType(forRow: 0)
+        sut.setTemperature("")
+
+        // When
+        sut.convert()
+
+        // Then
+        XCTAssertEqual(sut.output.result, "None")
     }
 }
