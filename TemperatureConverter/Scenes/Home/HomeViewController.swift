@@ -16,13 +16,13 @@ class HomeViewController: UIViewController {
     static var underlineView: UIView {
         UIView().configure {
             $0.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
-            $0.backgroundColor = .systemFill
+            $0.backgroundColor = .lightGray
         }
     }
 
     static let titleLabelConfiguration: (UILabel) -> Void = {
         $0.textColor = .darkGray
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        $0.font = UIFont.systemFont(ofSize: 15, weight: .medium)
     }
 
     static let stackViewConfiguration: (UIStackView) -> Void = {
@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
     // MARK: - UI elements
     let mainStackViewWrapper = UIView().configure {
         $0.backgroundColor = .white
-        $0.layer.cornerRadius = 8.0
+        $0.layer.cornerRadius = 16.0
     }
 
     let mainStackView = UIStackView().configure {
@@ -146,7 +146,7 @@ private extension HomeViewController {
     }
 
     func setupView() {
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .darkGray
 
         [
             convertFromTitleLabel,
@@ -183,7 +183,8 @@ private extension HomeViewController {
     func installConstraints() {
         mainStackViewWrapper.snp.makeConstraints {
             $0.top.leading.equalTo(view.safeAreaLayoutGuide).offset(12)
-            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-12)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-12)
+            $0.bottom.equalTo(view)
         }
 
         mainStackView.snp.makeConstraints {
