@@ -14,9 +14,9 @@ enum ConversionType: CaseIterable {
     var title: String {
         switch self {
         case .celsiusToFahrenheit:
-            return "Celsius to fahrenheit"
+            return "Celsius to Fahrenheit"
         case .fahrenheitToCelsius:
-            return "Fahrenheit to celsius"
+            return "Fahrenheit to Celsius"
         }
     }
 

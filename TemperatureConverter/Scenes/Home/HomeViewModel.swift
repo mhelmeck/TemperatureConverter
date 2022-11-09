@@ -43,10 +43,10 @@ class HomeViewModel: HomeViewModelInputOutput {
 
         let result = {
             switch conversionType {
-            case .fahrenheitToCelsius:
-                return (temperature - 32.0) * 5 / 9
             case .celsiusToFahrenheit:
                 return temperature * (9 / 5) + 32
+            case .fahrenheitToCelsius:
+                return (temperature - 32.0) * 5 / 9
             }
         }()
         output.result = String(format: "%.2f", result)

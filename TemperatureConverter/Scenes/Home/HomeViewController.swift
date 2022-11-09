@@ -62,19 +62,11 @@ class HomeViewController: UIViewController {
         $0.keyboardType = .numbersAndPunctuation
     }
 
-    let convertionTypeStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
-    let convertionTypeTitleLabel = UILabel()
-        .configure(HomeViewController.titleLabelConfiguration)
-        .configure { $0.text = "Convertion type" }
-    let convertionTypeInputButton = UIButton(type: .system).configure {
-        $0.setTitleColor(.systemBlue, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-        $0.contentHorizontalAlignment = .leading
-    }
-    let convertionTypePicerView = UIPickerView().configure {
-        $00.backgroundColor = .systemGray6
-        $0.layer.cornerRadius = 8.0
-        $0.isHidden = true
+    let convertButton = UIButton(type: .system).configure {
+        let config = UIImage.SymbolConfiguration(pointSize: 32)
+        let image = UIImage(systemName: "arrow.down.circle.fill", withConfiguration: config)
+
+        $0.setImage(image, for: .normal)
     }
 
     let resultStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
@@ -85,11 +77,19 @@ class HomeViewController: UIViewController {
         $0.font = UIFont.systemFont(ofSize: 18, weight: .regular)
     }
 
-    let convertButton = UIButton(type: .system).configure {
-        let config = UIImage.SymbolConfiguration(pointSize: 32)
-        let image = UIImage(systemName: "arrow.down.circle.fill", withConfiguration: config)
-
-        $0.setImage(image, for: .normal)
+    let convertionTypeStackView = UIStackView().configure(HomeViewController.stackViewConfiguration)
+    let convertionTypeTitleLabel = UILabel()
+        .configure(HomeViewController.titleLabelConfiguration)
+        .configure { $0.text = "Convertion type" }
+    let convertionTypeButton = UIButton(type: .system).configure {
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        $0.contentHorizontalAlignment = .leading
+    }
+    let convertionTypePicerView = UIPickerView().configure {
+        $00.backgroundColor = .systemGray6
+        $0.layer.cornerRadius = 8.0
+        $0.isHidden = true
     }
 
     // MARK: - Lifecycle
@@ -137,7 +137,7 @@ private extension HomeViewController {
         convertionTypePicerView.dataSource = pickerDelegateDataSource
 
         convertButton.addTarget(self, action: #selector(convertButtonDidSelect), for: .touchUpInside)
-        convertionTypeInputButton.addTarget(self, action: #selector(typeInputButtonDidSelect), for: .touchUpInside)
+        convertionTypeButton.addTarget(self, action: #selector(typeInputButtonDidSelect), for: .touchUpInside)
         convertFromInputTextField.addTarget(
             self,
             action: #selector(convertFromInputTextFieldValueDidChange),
@@ -163,7 +163,7 @@ private extension HomeViewController {
 
         [
             convertionTypeTitleLabel,
-            convertionTypeInputButton
+            convertionTypeButton
         ].forEach(convertionTypeStackView.addArrangedSubview)
 
         [
@@ -211,7 +211,7 @@ private extension HomeViewController {
         resultTitleLabel.text = output.convertToTitle
         resultOutputLabel.text = output.result
 
-        convertionTypeInputButton.setTitle(output.conversionTypeTitle, for: .normal)
+        convertionTypeButton.setTitle(output.conversionTypeTitle, for: .normal)
     }
 
     func hideTypePicerView() {
